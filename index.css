@@ -1,0 +1,288 @@
+/* --------For Font And Typography--------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+/* -------------ROOT-------------- */
+:root {
+    /* for Navigation Bar Color */
+    /* For Main Content Color */
+    --clr-black-light:  rgb(35, 35, 35);
+
+    /* TypoGrhapy */
+    --primary-ff: "Poppins", sans-serif;
+    --secondery-ff: "Open Sans", sans-serif;
+}
+
+/* -------------Universal------------ */
+::after,
+::before,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+  
+a {
+    text-decoration: none;
+    color: var(--primary-clr);
+    font-weight: 600;
+}
+
+ul li {
+    list-style: none;
+}
+/* -----------Navigation------------ */
+nav.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+    margin-inline: 5rem;
+    position: relative;
+    font-family: var(--primary-ff);
+}
+/* Navigation Logo */
+nav a.logo_nav {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav a.logo_nav i{
+    font-size: 1rem;
+    margin-right: .2rem;
+    background: -webkit-radial-gradient(left bottom,#014ed4 100px, #0752d4);
+    padding: .4rem;
+    border-radius: 100%;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+}
+nav a.logo_nav span {
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: #0f0f0f;
+}
+
+/* --------------Navigation Menu--------------- */
+nav .nav_menu {
+    display: inline-flex;
+    gap: 2rem;
+}
+
+/* Animation For Nav Menu */
+nav .nav_menu .nav_list > .nav_link {
+    position: relative;
+}
+
+.nav_menu .nav_list > .nav_link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    bottom: -.28rem;
+    width: 0%;
+    height: 2px;
+    background-color: #000;
+    transition: width .4s, transform .4s;
+}
+
+.nav_menu .nav_list > .nav_link:hover::after {
+    width: 100%;
+    transform: translateX(-50%);
+}
+
+/* Dropdown Group */
+nav .nav_menu > .dropdown_menu {
+    position: relative;
+    cursor: pointer; 
+}
+
+
+/* Dropdown Menu Animation */
+.nav_menu .dropdown_menu > .dropdown_items {
+    position: absolute;
+    top: 100%; 
+    left: 10%;
+    width: 12rem;
+    opacity: 0;
+    transform: translateY(-7%);
+    background-color: hsla(0 0 0 / 1);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transition: opacity 0.4s, transform 0.4s;
+    pointer-events: none;
+}
+
+/* transtition for rotate dropwon arrow */
+.nav_link_dropdown .dropdown_arrow {
+    display: inline-flex;
+    transition: transform .4s;
+}
+
+.dropdown_menu:hover .nav_link_dropdown .dropdown_arrow {
+    transform: rotate(180deg);
+}
+.dropdown_menu:hover .dropdown_items {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: visible;
+}
+
+.dropdown_menu .dropdown_items > .dropdown_content {
+    opacity: 0; 
+    transform: translateY(-7%); 
+    padding: 1rem;
+    transition: opacity .4s, transform .4s;
+}
+
+.dropdown_content:nth-child(1) { transition-delay: 0.2s !important; }
+.dropdown_content:nth-child(2) { transition-delay: 0.3s !important; }
+.dropdown_content:nth-child(3) { transition-delay: 0.4s !important; }
+
+.dropdown_menu .dropdown_items > .dropdown_content:hover {
+    background-color: var(--clr-black-light); 
+}
+
+.dropdown_menu:hover .dropdown_content {
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+/* Animation for dropdown link */
+
+.dropdown_items .dropdown_content > .dropdown_link {
+    position: relative;
+    align-items: center;
+    display: inline-flex;
+}
+/* transition for i */
+
+.dropdown_items .dropdown_content .dropdown_link i {
+    font-size: 1.1rem;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .4s, visibility .4s;
+}
+
+.dropdown_content:hover .dropdown_link i {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: visible;
+}
+
+/* Transition for span */
+
+.dropdown_items .dropdown_content .dropdown_link span {
+    position: relative;
+    transition: margin .4s;
+    pointer-events: none;
+}
+
+.dropdown_content:hover .dropdown_link span {
+    margin-left: 1.5rem;
+    pointer-events: visible;
+}
+
+.dropdown_items .dropdown_content .dropdown_link span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -.28rem;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition: width .4s ease-out;
+    pointer-events: none;
+}
+
+.dropdown_content:hover .dropdown_link span::after {
+    width: 100%;
+    pointer-events: visible;
+}
+
+/* Button Group */
+.btn_toggle,
+.btn_close {
+    display: none;
+}
+
+
+@media screen and (max-width: 640px) {
+    nav.container {
+        margin-inline: 1.5rem ;
+        position: sticky;
+        top: 0;
+        left: 0;
+    }
+
+    .btn_group {
+        position: relative;
+    }
+
+    .btn_toggle {
+        display: inline-flex;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .nav_menu {
+        position: fixed;
+        flex-direction: column;
+        inset: 0 100% 0 -7rem;
+        background-color: black;
+        padding: 6rem 3.5rem 4.5rem;
+        transition: inset .4s ease;
+        z-index: 10;
+    }
+
+    .show-menu {
+        inset: 0 50% 0 0;
+    }
+
+    .nav_list {
+        transform: translatex(-10rem); 
+        opacity: 0;
+        transition: transform .4s ease-in-out, opacity .4s ease-in-out;
+    }
+
+    .show-menu .nav_list {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .nav_list:nth-of-type(1) { transition-delay: .1s; }
+    .nav_list:nth-of-type(2) { transition-delay: .2s; }
+    .nav_list:nth-of-type(3) { transition-delay: .3s; }
+    .nav_list:nth-of-type(4) { transition-delay: .4s; }
+    .nav_list:nth-of-type(5) { transition-delay: .5s; }
+
+    .nav_link {
+        color: #fff;
+    }
+    .nav_link_dropdown {
+        color: #fff;
+        position: relative;
+    }
+
+    .nav_menu .dropdown_menu > .dropdown_items {
+        position: static;
+        display: none;
+        background-color: #000;
+        top: 100%;
+    }
+
+    .nav_menu .dropdown_menu:hover .dropdown_items {
+        display: block;
+    }
+}
